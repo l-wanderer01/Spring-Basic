@@ -12,13 +12,13 @@ class StatefulServiceTest {
     @Test
     void statefulServiceSingleton() {
         ApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
-        StatefulService statefulService1 = ac.getBean(StatefulService.class);// 빈 조회
-        StatefulService statefulService2 = ac.getBean(StatefulService.class);// 빈 조회
+        StatefulService statefulService1 = ac.getBean("statefulService", StatefulService.class);// 빈 조회
+        StatefulService statefulService2 = ac.getBean("statefulService", StatefulService.class);// 빈 조회
 
         // ThreadA : A 사용자가 10000원 주문
         statefulService1.order("userA", 10000);
         // ThreadB : B 사용자가 20000원 주문
-        statefulService1.order("userA", 20000);
+        statefulService2.order("userB", 20000);
 
         // ThreadA : 사용자 A 주문 금액 조회
         int price = statefulService1.getPrice();
