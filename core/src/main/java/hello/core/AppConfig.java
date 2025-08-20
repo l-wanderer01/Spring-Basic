@@ -16,19 +16,25 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig  {
 
+    // @Bean memberService -> new MemoryMemberRepository()
+    // @Bean orderService -> new MemoryMemberRepository()
+    // -> MemoryMemberRepository가 총 2개 호출되는데 싱글톤이 깨지는게 아닌가?
     @Bean // Spring Bean : 하단의 메서드가 Spring 컨테이너에 등록됨
     // AppConfig는 생성한 객체 인스턴스의 참조(레퍼런스)를 생성자를 통해서 주입(연결) 해준다.
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public static MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
