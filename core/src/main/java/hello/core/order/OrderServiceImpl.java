@@ -13,11 +13,32 @@ import org.springframework.stereotype.Component;
 public class OrderServiceImpl implements OrderService {
 
     // MemberRepository에서 멤버 찾기
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
+//    @Autowired private MemberRepository memberRepository; // 의존관계 주입 (필드 주입)
+//    @Autowired private DiscountPolicy discountPolicy;
 
-    @Autowired // 생성자에 Autowired를 작성하면 자동 의존관계 주입이 가능
+//    @Autowired // 의존관계 주입 (수정자 주입)
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        System.out.println("memberRepository = " + memberRepository);
+//        this.memberRepository = memberRepository;
+//    }
+//
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        System.out.println("discountPolicy = " + discountPolicy);
+//        this.discountPolicy = discountPolicy;
+//    }
+
+    // @Autowired // 생성자에 Autowired를 작성하면 자동 의존관계 주입이 가능 (생성자가 하나하면, 생략해도 자동 주입 가능)
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+    // 일반 메서드 주입
+    @Autowired
+    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
@@ -33,5 +54,13 @@ public class OrderServiceImpl implements OrderService {
     // 테스트 용도
     public MemberRepository getMemberRepository() {
         return memberRepository;
+    }
+    // 테스트 용도
+    public void setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+    // 테스트 용도
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
     }
 }
