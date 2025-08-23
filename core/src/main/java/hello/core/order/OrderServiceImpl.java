@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 public class OrderServiceImpl implements OrderService {
 
     // MemberRepository에서 멤버 찾기
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 //    @Autowired private MemberRepository memberRepository; // 의존관계 주입 (필드 주입)
 //    @Autowired private DiscountPolicy discountPolicy;
 
@@ -37,11 +37,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     // 일반 메서드 주입
-    @Autowired
-    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    @Autowired
+//    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
@@ -55,12 +55,12 @@ public class OrderServiceImpl implements OrderService {
     public MemberRepository getMemberRepository() {
         return memberRepository;
     }
-    // 테스트 용도
-    public void setMemberRepository(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
-    // 테스트 용도
-    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
-        this.discountPolicy = discountPolicy;
-    }
+//    // 테스트 용도
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
+//    // 테스트 용도
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        this.discountPolicy = discountPolicy;
+//    }
 }

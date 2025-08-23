@@ -10,7 +10,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired // 자동 의존관계 주입 (MemberRepository를 의존관게 주입할 방법이 없기 때문)
     // ac.getBean(MemberRepository.class)
-    public  MemberServiceImpl(MemberRepository memberRepository) { // 생성자 주입
+    public MemberServiceImpl(MemberRepository memberRepository) { // 생성자 주입
         this.memberRepository = memberRepository;
     }
 
