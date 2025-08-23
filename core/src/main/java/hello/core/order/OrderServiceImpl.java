@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
@@ -33,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 //    }
 
     // @Autowired // 생성자에 Autowired를 작성하면 자동 의존관계 주입이 가능 (생성자가 하나하면, 생략해도 자동 주입 가능)
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy rateDiscountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = rateDiscountPolicy;
     }
