@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor // 롬복
+//@RequiredArgsConstructor // 롬복
 public class OrderServiceImpl implements OrderService {
 
     // MemberRepository에서 멤버 찾기
@@ -33,10 +33,10 @@ public class OrderServiceImpl implements OrderService {
 //    }
 
     // @Autowired // 생성자에 Autowired를 작성하면 자동 의존관계 주입이 가능 (생성자가 하나하면, 생략해도 자동 주입 가능)
-//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        this.memberRepository = memberRepository;
-//        this.discountPolicy = discountPolicy;
-//    }
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = rateDiscountPolicy;
+    }
 
     // 일반 메서드 주입
 //    @Autowired
